@@ -6,7 +6,6 @@ export default function Submit() {
       <main>
         <Header title="Submit a Review" />
         <Toolbar />
-        <h1>Submit</h1>
       </main>
     );
   }

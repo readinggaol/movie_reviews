@@ -1,10 +1,8 @@
-import logo from './logo.svg';
 import Toolbar from './components/Toolbar';
 import Header from './components/Header';
-import Nothing from "./routes/nothing"
 import { useState, useEffect } from 'react'
 import './App.css';
-import { Link, Routes, Route } from 'react-router-dom'
+import MoviePane from './components/MoviePane';
 
 function App() {
 
@@ -20,10 +18,7 @@ function App() {
     <div className="App">
       <Header title="Movie Reviews" />
       <Toolbar />
-      <Routes>
-        <Route path='/submit' />
-        <Route path="*" element={<Nothing />} />
-      </Routes>
+      <MoviePane movies={movies} setMovies={setMovies} />
     </div>
   );
 }

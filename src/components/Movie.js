@@ -1,3 +1,4 @@
+import Button from "./Button"
 
 const Movie = (props) => {
     return (
@@ -7,6 +8,7 @@ const Movie = (props) => {
             {props.actors.map((actor, i) => { return <span key={i}>{actor} </span>})}   
             <img src={props.poster}></img>
             <p>{props.rating}</p>
+            <Button label="Remove" movie_name={props.title} movies={props.movies} setMovies={props.setMovies}/>
         </div>
     )
 }
