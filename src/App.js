@@ -1,23 +1,27 @@
 import logo from './logo.svg';
+import Toolbar from './components/Toolbar';
+import Header from './components/Header';
+import Movie from './components/Movie';
+import { useState, useEffect } from 'react'
 import './App.css';
 
 function App() {
+
+  const [movies, setMovies] = useState([])
+
+  useEffect(() => {
+    fetch('./movies.json')
+    .then((response) => response.json())
+    .then((data) => setMovies(data))
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header title="Movie Reviews" />
+      <Toolbar />
+      {movies.map((movie, i) => { 
+        return <Movie key={i} title={movie.name} release_date={movie.release_date} actors={movie.actors} poster={movie.poster} rating={movie.rating} />
+        })}
     </div>
   );
 }
