@@ -1,10 +1,11 @@
 import Button from "./Button"
+import { Link, NavLink } from "react-router-dom"
 
 const Toolbar = () => {
     return (
         <div>
-            <Button title="Reviews" />
-            <Button title="Submit A Review" />
+            <NavLink to="submit">Submit</NavLink>
+            <NavLink to="/">Movies</NavLink>
         </div>
     )
 }

@@ -1,9 +1,10 @@
 import logo from './logo.svg';
 import Toolbar from './components/Toolbar';
 import Header from './components/Header';
-import Movie from './components/Movie';
+import Nothing from "./routes/nothing"
 import { useState, useEffect } from 'react'
 import './App.css';
+import { Link, Routes, Route } from 'react-router-dom'
 
 function App() {
 
@@ -19,9 +20,10 @@ function App() {
     <div className="App">
       <Header title="Movie Reviews" />
       <Toolbar />
-      {movies.map((movie, i) => { 
-        return <Movie key={i} title={movie.name} release_date={movie.release_date} actors={movie.actors} poster={movie.poster} rating={movie.rating} />
-        })}
+      <Routes>
+        <Route path='/submit' />
+        <Route path="*" element={<Nothing />} />
+      </Routes>
     </div>
   );
 }
