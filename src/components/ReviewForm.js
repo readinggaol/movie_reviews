@@ -1,9 +1,16 @@
 
 
-const ReviewForm = () => {
+const ReviewForm = (props) => {
+
+    const formSubmit = (e) => {
+        e.preventDefault()
+        const my_data = new FormData(e.target)
+        console.log(Object.fromEntries(my_data.entries()))
+    }
+
     return (
         <div>
-            <form>
+            <form onSubmit ={formSubmit}>
                 <label>Name of Movie</label>
                 <input type="text" name="name" />
                 <label>Year Released</label>
@@ -18,6 +25,7 @@ const ReviewForm = () => {
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
+                <button>Submit</button>
             </form>
         </div>
     )
