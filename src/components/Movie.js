@@ -2,12 +2,12 @@ import Button from "./Button"
 
 const Movie = (props) => {
     return (
-        <div>
-            <h2>{props.title}</h2>
-            <p>{props.release_date}</p>
-            {props.actors.map((actor, i) => { return <span key={i}>{actor} </span>})}   
+        <div className="movie">
+            <h2 className="title">{props.title}</h2>
+            <p className="date">{props.release_date}</p>
+            {props.actors.map((actor, i) => { return <p className="actor" key={i}>{actor} </p>})}   
             <img src={props.poster}></img>
-            <p>{props.rating}</p>
+            <p className="rating">Rating: {props.rating} / 5</p>
             <Button label="Remove" movie_name={props.title} movies={props.movies} setMovies={props.setMovies}/>
         </div>
     )

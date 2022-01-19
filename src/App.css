@@ -37,7 +37,68 @@
   }
 }
 
+body{
+  background-color: #bfc8db;
+}
+
 img {
   height: 400px;
   width: 300px;
+}
+
+.toolbar{
+  background-color: #282c34;
+  text-align: left;
+  font-size: 1.5em;
+}
+
+.form {
+  background-color: #7f889b;
+  width: 50%;
+  margin-left: 25%;
+  text-align: center;
+  border-radius: 1em;
+  padding: 10px;
+}
+
+.header{
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+.navlink{
+  margin: 15px;
+  color:aliceblue;
+
+}
+
+.navlink:hover{
+  text-decoration: none;
+}
+
+.movie{
+  background-color: #7f889b;
+  border-radius: 1em;
+  text-align: center;
+  width: 50%;
+  margin-left: 25%;
+  margin-bottom: 15px;
+  padding: 15px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.title{
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: underline;
+}
+.actor{
+  margin: 0;
+}
+
+.rating{
+  font-weight: bold;
+}
+
+.date{
+  font-weight: bold;
 }

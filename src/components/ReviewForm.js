@@ -14,25 +14,35 @@ const ReviewForm = (props) => {
     }
 
     return (
-        <div>
+        <div className="form">
             <Header title="Submit Review" />
-            <form onSubmit ={formSubmit}>
-                <label>Name of Movie</label>
-                <input type="text" name="name" />
-                <label>Year Released</label>
-                <input type="text" name="release_date" />
-                <label>Lead Actors (Each name on a new line)</label>
-                <textarea name="actors"></textarea>
-                <label>Star Rating (1-5) </label>
-                <select name="rating">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
+            <form onSubmit={formSubmit}>
+                <div className="form-group">
+                    <p>Name of Movie</p>
+                    <input className="form-control" type="text" name="name" />
+                </div>
+                <div className="form-group">
+                    <p>Year Released</p>
+                    <input className="form-control" type="text" name="release_date" />
+                </div>
+                <div className="form-group">
+                    <p>Lead Actors (Each name on a new line)</p>
+                    <textarea className="form-control" name="actors"></textarea>
+                </div>
+                <div className="form-group">
+                    <p>Star Rating (1-5) </p>
+                    <select className="form-control" name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div className="form-group">
                 <input type="file" name="poster"/>
-                <button>Submit</button>
+                </div>
+                <button className="btn btn-primary">Submit</button>
             </form>
         </div>
     )
