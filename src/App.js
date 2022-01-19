@@ -22,7 +22,7 @@ function App() {
       <Toolbar />
       <Routes>
         <Route path="/" element={<MoviePane movies={movies} setMovies={setMovies}/>} />
-        <Route path="/submit" element={<ReviewForm movies={movies}/>} />
+        <Route path="/submit" element={<ReviewForm movies={movies} setMovies={setMovies}/>} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
