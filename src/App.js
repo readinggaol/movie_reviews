@@ -3,6 +3,9 @@ import Header from './components/Header';
 import { useState, useEffect } from 'react'
 import './App.css';
 import MoviePane from './components/MoviePane';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ReviewForm from './components/ReviewForm';
+import ErrorPage from './components/ErrorPage';
 
 function App() {
 
@@ -15,11 +18,14 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <Header title="Movie Reviews" />
+    <BrowserRouter>
       <Toolbar />
-      <MoviePane movies={movies} setMovies={setMovies} />
-    </div>
+      <Routes>
+        <Route path="/" element={<MoviePane movies={movies} setMovies={setMovies}/>} />
+        <Route path="/submit" element={<ReviewForm movies={movies}/>} />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

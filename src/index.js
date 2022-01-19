@@ -8,13 +8,7 @@ import Nothing from './routes/nothing'
 
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="submit" element={<Submit />} />
-      <Route path="*" element={<Nothing />} />
-    </Routes>
-  </BrowserRouter>,
+  <App />,
   document.getElementById('root')
 );
 
