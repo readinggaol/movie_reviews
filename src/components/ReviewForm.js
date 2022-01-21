@@ -1,6 +1,13 @@
 import Header from "./Header"
+import { useState } from "react"
 
 const ReviewForm = (props) => {
+
+    let fileSubmitted = false;
+
+    const setFileSubmitted = () => {
+        fileSubmitted = true;
+    }
 
     const formSubmit = (e) => {
         e.preventDefault()
@@ -8,9 +15,19 @@ const ReviewForm = (props) => {
         my_data = Object.fromEntries(my_data.entries())
         my_data.actors = my_data.actors.split("\n")
         my_data.poster = URL.createObjectURL(my_data.poster)
-        let placeholder = props.movies
-        placeholder.push(my_data)
-        props.setMovies(placeholder)
+        //validate that all fields have been filled
+        //then check to see if that movie already exists before adding it
+        if(my_data.name == "" || my_data.release_date == "" || my_data.actors == "" || fileSubmitted == false){
+            alert("You must complete the form before submitting!")
+        }else if(props.movies.filter(movie => movie.name == my_data.name) != []){
+            alert("This movie already exists!")
+        }else{
+            let placeholder = props.movies
+            placeholder.push(my_data)
+            props.setMovies(placeholder)
+            alert("Movie successfully added!")
+            e.currentTarget.reset()
+        }
     }
 
     return (
@@ -40,7 +57,7 @@ const ReviewForm = (props) => {
                     </select>
                 </div>
                 <div className="form-group">
-                <input type="file" name="poster"/>
+                <input type="file" name="poster" onChange={setFileSubmitted}/>
                 </div>
                 <button className="btn btn-primary">Submit</button>
             </form>
