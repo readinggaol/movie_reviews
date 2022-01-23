@@ -15,11 +15,14 @@ const ReviewForm = (props) => {
         my_data = Object.fromEntries(my_data.entries())
         my_data.actors = my_data.actors.split("\n")
         my_data.poster = URL.createObjectURL(my_data.poster)
+
+        let thing = props.movies.filter(movie => movie.name == my_data.name);
+
         //validate that all fields have been filled
         //then check to see if that movie already exists before adding it
         if(my_data.name == "" || my_data.release_date == "" || my_data.actors == "" || fileSubmitted == false){
             alert("You must complete the form before submitting!")
-        }else if(props.movies.filter(movie => movie.name == my_data.name) != []){
+        }else if(thing.length != []){
             alert("This movie already exists!")
         }else{
             let placeholder = props.movies
