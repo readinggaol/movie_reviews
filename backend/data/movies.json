@@ -1,0 +1,31 @@
+
+
+[
+    {
+        "name": "Spirited Away",
+        "release_date": 2001,
+        "actors": [
+            "Rumi Hiiragi", "Miyu Irino", "Mari Natsuki"
+        ],
+        "poster": "spirited.jpg",
+        "rating": 4
+    },
+    {
+        "name": "Blade Runner",
+        "release_date": 1982,
+        "actors": [
+            "Harrison Ford", "Rutger Hauer", "Sean Young"
+        ],
+        "poster": "runner.jpg",
+        "rating": 5
+    },
+    {
+        "name": "Top Gun",
+        "release_date": 1986,
+        "actors": [
+            "Tom Cruise", "Kelly McGillis", "Val Kilmer", "Tom Skerritt"
+        ],
+        "poster": "topgun.jpg",
+        "rating": 3
+    }
+]
