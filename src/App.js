@@ -11,11 +11,15 @@ function App() {
 
   const [movies, setMovies] = useState([])
 
-  useEffect(() => {
-    fetch('./movies.json')
-    .then((response) => response.json())
-    .then((data) => setMovies(data))
+  useEffect(async () => {
+    const test = await fetch('/api/movies');
+      const second = await test.json();
+      setMovies(second);
   }, [])
+
+
+ 
+
 
   return (
     <BrowserRouter>
