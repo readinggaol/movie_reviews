@@ -17,10 +17,6 @@ function App() {
       setMovies(second);
   }, [])
 
-
- 
-
-
   return (
     <BrowserRouter>
       <Toolbar />

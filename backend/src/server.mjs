@@ -22,6 +22,20 @@ app.get("/api/movies", async (req, res) => {
     
 });
 
+app.post("/api/addMovie", async (req, res) => {
+    try {
+        const client = await MongoClient.connect('mongodb://localhost:27017', {useNewUrlParser: true});
+        const db = client.db('my-movies');
+
+        await db.collection('movies').insertOne( {name:req.body.name, release_date:req.body.release_date, actors:req.body.actors, poster:req.body.poster, rating:req.body.rating})
+        res.status(200).json({message: "Success"});
+        client.close();
+    }
+    catch( error) {
+        res.status(500).json( { message: "Error connecting to db", error});
+    }
+})
+
 
 
 

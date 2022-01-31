@@ -1,5 +1,4 @@
 import Header from "./Header"
-import { useState } from "react"
 
 const ReviewForm = (props) => {
 
@@ -15,19 +14,29 @@ const ReviewForm = (props) => {
         my_data = Object.fromEntries(my_data.entries())
         my_data.actors = my_data.actors.split("\n")
         my_data.poster = URL.createObjectURL(my_data.poster)
+        my_data.release_date = parseInt(my_data.release_date)
 
-        let thing = props.movies.filter(movie => movie.name == my_data.name);
+        let thing = props.movies.filter(movie => movie.name === my_data.name);
 
         //validate that all fields have been filled
         //then check to see if that movie already exists before adding it
-        if(my_data.name == "" || my_data.release_date == "" || my_data.actors == "" || fileSubmitted == false){
+        if(my_data.name === "" || my_data.release_date === "" || my_data.actors === "" || fileSubmitted === false){
             alert("You must complete the form before submitting!")
         }else if(thing.length != []){
             alert("This movie already exists!")
         }else{
-            let placeholder = props.movies
-            placeholder.push(my_data)
-            props.setMovies(placeholder)
+            const postMovie = async () => {
+                const post = await fetch("/api/addMovie", 
+                { method: "post", 
+                body: JSON.stringify(my_data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+                const result = await post.json();
+                console.log(result);
+            }
+            postMovie();
             alert("Movie successfully added!")
             e.currentTarget.reset()
         }
