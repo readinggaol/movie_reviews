@@ -1,10 +1,20 @@
 import express from "express";
 import bodyParser from 'body-parser';
 import { MongoClient } from 'mongodb';
+import multer from 'multer';
 
 const app = express();
 
-app.use(bodyParser.json());
+var storage = multer.diskStorage({
+    destination: '../public',
+    filename: function(req, file, callback) {
+      callback(null, file.originalname);
+    }
+  });
+
+const upload = multer({ storage: storage});
+
+app.use(express.json());
 
 app.get("/api/movies", async (req, res) => {
     try{
@@ -12,7 +22,6 @@ app.get("/api/movies", async (req, res) => {
         const db = client.db("my-movies");
 
         const movies = await db.collection("movies").find({}).toArray();
-        console.log(movies);
         res.status(200).json(movies);
         client.close();
     }
@@ -22,19 +31,27 @@ app.get("/api/movies", async (req, res) => {
     
 });
 
-app.post("/api/addMovie", async (req, res) => {
-    try {
-        const client = await MongoClient.connect('mongodb://localhost:27017', {useNewUrlParser: true});
-        const db = client.db('my-movies');
+app.post('/api/addMovie', upload.single('poster'), addMovie);
 
-        await db.collection('movies').insertOne( {name:req.body.name, release_date:req.body.release_date, actors:req.body.actors, poster:req.body.poster, rating:req.body.rating})
-        res.status(200).json({message: "Success"});
-        client.close();
-    }
-    catch( error) {
-        res.status(500).json( { message: "Error connecting to db", error});
-    }
-})
+function addMovie(req, res) {
+    console.log(req.body);
+    console.log(req.body.filename);
+}
+
+
+// app.post("/api/addMovie", async (req, res) => {
+//     try {
+//         const client = await MongoClient.connect('mongodb://localhost:27017', {useNewUrlParser: true});
+//         const db = client.db('my-movies');
+
+//         await db.collection('movies').insertOne( {name:req.body.name, release_date:req.body.release_date, actors:req.body.actors, poster:req.body.poster, rating:req.body.rating})
+//         res.status(200).json({message: "Success"});
+//         client.close();
+//     }
+//     catch( error) {
+//         res.status(500).json( { message: "Error connecting to db", error});
+//     }
+// })
 
 
 

@@ -9,12 +9,13 @@ const ReviewForm = (props) => {
     }
 
     const formSubmit = (e) => {
-        e.preventDefault()
-        let my_data = new FormData(e.target)
-        my_data = Object.fromEntries(my_data.entries())
-        my_data.actors = my_data.actors.split("\n")
-        my_data.poster = URL.createObjectURL(my_data.poster)
-        my_data.release_date = parseInt(my_data.release_date)
+        e.preventDefault();
+        let my_data = new FormData(e.target);
+        my_data = Object.fromEntries(my_data.entries());
+        my_data.actors = my_data.actors.split("\n");
+        my_data.release_date = parseInt(my_data.release_date);
+        my_data.filename = my_data.poster.name;
+        console.log(my_data);
 
         let thing = props.movies.filter(movie => movie.name === my_data.name);
 
@@ -45,7 +46,7 @@ const ReviewForm = (props) => {
     return (
         <div className="form">
             <Header title="Submit Review" />
-            <form onSubmit={formSubmit}>
+            <form onSubmit={formSubmit} method='post' encType="multipart/form-data">
                 <div className="form-group">
                     <p>Name of Movie</p>
                     <input className="form-control" type="text" name="name" />
