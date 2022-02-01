@@ -6,6 +6,7 @@ const ReviewForm = (props) => {
 
     const setFileSubmitted = () => {
         fileSubmitted = true;
+        console.log(fileSubmitted);
     }
 
     const formSubmit = (e) => {
@@ -17,14 +18,19 @@ const ReviewForm = (props) => {
         my_data.filename = my_data.poster.name;
         console.log(my_data);
 
+
         let thing = props.movies.filter(movie => movie.name === my_data.name);
 
         //validate that all fields have been filled
         //then check to see if that movie already exists before adding it
-        if(my_data.name === "" || my_data.release_date === "" || my_data.actors === "" || fileSubmitted === false){
-            alert("You must complete the form before submitting!")
+        if(my_data.name === "" || my_data.release_date === "" || my_data.actors === ""){
+            alert("You must complete the form before submitting!");
+            console.log(my_data.name);
+            console.log(my_data.release_date);
+            console.log(my_data.actors);
+            console.log(fileSubmitted);
         }else if(thing.length != []){
-            alert("This movie already exists!")
+            alert("This movie already exists!");
         }else{
             const postMovie = async () => {
                 const post = await fetch("/api/addMovie", 
@@ -38,15 +44,15 @@ const ReviewForm = (props) => {
                 console.log(result);
             }
             postMovie();
-            alert("Movie successfully added!")
-            e.currentTarget.reset()
+            alert("Movie successfully added!");
+            e.currentTarget.reset();
         }
     }
 
     return (
         <div className="form">
             <Header title="Submit Review" />
-            <form onSubmit={formSubmit} method='post' encType="multipart/form-data">
+            <form onSubmit={formSubmit} method='post' formEncType="multipart/form-data">
                 <div className="form-group">
                     <p>Name of Movie</p>
                     <input className="form-control" type="text" name="name" />

@@ -15,7 +15,7 @@ function App() {
     const test = await fetch('/api/movies');
       const second = await test.json();
       setMovies(second);
-  }, [])
+  })
 
   return (
     <BrowserRouter>
