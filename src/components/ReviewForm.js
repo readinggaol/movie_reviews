@@ -52,7 +52,7 @@ const ReviewForm = (props) => {
     return (
         <div className="form">
             <Header title="Submit Review" />
-            <form onSubmit={formSubmit} method='post' formEncType="multipart/form-data">
+            <form onSubmit={formSubmit} method='post' encType="multipart/form-data">
                 <div className="form-group">
                     <p>Name of Movie</p>
                     <input className="form-control" type="text" name="name" />
