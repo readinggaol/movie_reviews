@@ -17,8 +17,6 @@ const upload = multer({ storage: storage});
 
 app.use(express.json());
 
-
-
 //Get movies for home page
 app.get("/api/movies", async (req, res) => {
     try{
